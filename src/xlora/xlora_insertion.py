@@ -39,7 +39,7 @@ class xLoRALayer:
     @staticmethod
     def apply_scalings_to_x(x: torch.Tensor, scalings_layer: torch.Tensor, adapter: int) -> torch.Tensor:
         # scalings_layer = [batch_size, seq_len, n_classes]
-        scalings = scalings_layer[:, :, adapter].unsqueeze(-1)
+        scalings = scalings_layer[:, :, adapter].unsqueeze(-1).to(x.device)
         # scalings_layer = [batch_size, seq_len, 1]
         return x * scalings
 
